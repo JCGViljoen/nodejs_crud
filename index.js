@@ -45,22 +45,23 @@ app.post('/todos', (req, res) => {
     );
 });
 
-// route to update a todo
-app.put('/todos/:id', (req,res) => {
-    const { title, description} = req.body;
+// Route to update a todo
+app.put('/todos/:id', (req, res) => {
+    const { title, description } = req.body;
     const todoId = req.params.id;
     pool.query(
         'UPDATE todos SET title=?, description=? WHERE id=?',
         [title, description, todoId],
-        (err)=> {
+        (err) => {
             if (err) {
-                res.status(500).json({ error: ' Internal Server Error'})
+                res.status(500).json({ error: 'Internal Server Error' });
             } else {
-                res.json({ id: todoId, title, description});
+                res.json({ id: todoId, title, description });
             }
         }
     );
 });
+
 
 // route to delete a todo 
 app.delete('/todos/:id' , (req,res) => {

@@ -21,3 +21,23 @@ li {
     padding: 10px;
     border-bottom: 1px solid #ddd;
 }
+
+/* Add some spacing between buttons and list items */
+li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Style the update and delete buttons */
+.update-button,
+.delete-button {
+    padding: 5px 10px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    margin-left: 10px;
+}
