@@ -18,31 +18,31 @@ const pool = mysql.createPool({
 app.use(bodyParser.json());
 
 // route to get all todos
-app.get('/todos', (req,res) => {
+app.get('/todos', (req, res) => {
     pool.query('SELECT * FROM todos', (err, results) => {
-        if (err){
-            res.status(500).json({ error : 'Internal Server Error'});
-        } else{
+        if (err) {
+            res.status(500).json({ error: 'Internal Server Error' });
+        } else {
             res.json(results);
         }
     });
 });
 
 // route to create a new todo
-app.post('/todos', (req,res) => {
-    const {title, description } = req.body;
+app.post('/todos', (req, res) => {
+    const { title, description } = req.body;
     pool.query(
         'INSERT INTO todos (title, description) VALUES (?, ?)',
         [title, description],
         (err, result) => {
-            if (err){
-                res.status(500).json({ error: 'Internal Server Error'});
+            if (err) {
+                res.status(500).json({ error: 'Internal Server Error' });
             } else {
-                const newTodo = {id: result.insertid, title, description};
+                const newTodo = { id: result.insertId, title, description };
                 res.json(newTodo);
             }
         }
-    )
+    );
 });
 
 // route to update a todo
@@ -74,6 +74,7 @@ app.delete('/todos/:id' , (req,res) => {
     });
 });
 
+app.use(express.static('static'));
 // start server
 app.listen(port, () => {
     console.log(`Server is runnig on port: ${port}`);
